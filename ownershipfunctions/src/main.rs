@@ -1,10 +1,19 @@
+fn change_mut_string(s: &mut String) {
+    s.insert_str(0, "ok ok changed");
+    println!("changed mut String: {s}");
+}
+
 fn gives_ownership() -> String {
     String::from("king of the hill")
 }
 
+fn calculate_length_byref(s: &String) -> usize {
+    s.len()
+}
+
 fn takes_givesback_ownership(mut s: String) -> String {
     s.push_str(" giving back");
-    s
+    s + "is this "
 }
 fn strlen_dyn2(s: &dyn AsRef<str>) -> usize {
     s.as_ref().len()
@@ -51,4 +60,11 @@ fn main() {
 
     let (s4, len) = calculate_length(s3);
     println!("s4: {s4}, length : {len} ");
+
+    let str_length = calculate_length_byref(&s4);
+    println!("length of \"{s4}\": {str_length}");
+    println!("s4 is still valid: {s4}");
+
+    let mut s5 = String::from("change me change me");
+    change_mut_string(&mut s5);
 }
