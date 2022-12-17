@@ -20,6 +20,10 @@ fn first_word_sliced(s: &str) -> &str {
     s
 }
 
+fn other_slices(s: &[i32]) {
+    println!("received another slice: {:?}", s);
+}
+
 fn main() {
     let mut s = String::from("demiros");
     let length_or_last = first_word(&s);
@@ -34,5 +38,15 @@ fn main() {
     s.insert_str(0, "hoops ");
 
     let word1 = first_word_sliced(&s);
-    println!("sliced string first word : {:?}", word1);
+    let word1_with_slice = first_word_sliced(&s[..]);
+    println!("sliced string first word : {word1} and {word1_with_slice}");
+
+    let s2: &str = "hello, slice";
+    let s2_word1 = first_word_sliced(s2);
+    println!("s2 word1: {s2_word1}");
+
+    let arr = [1, 2, 3, 4, 5];
+    other_slices(&arr[1..3]);
+    let slice: &[i32] = &arr[0..2];
+    assert_eq!(slice, &[1, 2]);
 }
