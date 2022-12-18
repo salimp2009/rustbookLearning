@@ -17,6 +17,20 @@ fn build_user(email: String, username: String) -> User {
     }
 }
 
+// Tuple like Structs
+struct Color(i32, i32, i32);
+struct Point(i32, i32, i32);
+
+// Unit-Like structs
+struct AlwaysEqual;
+
+#[derive(Debug)]
+#[allow(dead_code)]
+struct UserGroup<'a> {
+    username: &'a str,
+    email: &'a str,
+}
+
 fn main() {
     let mut user1 = User {
         active: true,
@@ -49,4 +63,25 @@ fn main() {
     //    assert_eq!(user1.username, String::from("blabla"));
     user1.username = String::from("yowww_yowww");
     println!("user1 after the move : {:?}", user1);
+
+    let _black = Color(0, 0, 0);
+    let _origin = Point(0, 0, 0);
+
+    let _subject = AlwaysEqual;
+
+    let usergroup1 = UserGroup {
+        username: &user1.username,
+        email: &user1.email,
+    };
+
+    let _usergroup2 = UserGroup {
+        username: "hoops this is ok",
+        email: "hops@hops.com",
+    };
+
+    println!("usergroup1: {:?}", usergroup1);
+    user1.email = String::from("notcool@notcool.com");
+
+    // you can not use the usergroup if there is mutable access
+    //    println!("after the update usergroup1: {:?}", usergroup1);
 }
