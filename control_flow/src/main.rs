@@ -59,7 +59,16 @@ fn plus_one(x: Option<i32>) -> Option<i32> {
 
     // }
     // Alternative to above recommended by clippy
-    x.map(|val| val + 1)
+    x.map(|val| {
+        println!("val + 1 = {}", val + 1);
+        val + 1
+    })
+}
+
+fn config_set(config_max: Option<u8>) {
+    if let Some(max) = config_max {
+        println!("config is set to max: {max}");
+    }
 }
 
 fn dice_roll() {
@@ -86,4 +95,6 @@ fn main() {
     let some_value = plus_one(Some(5));
     assert_eq!(some_value, Some(6));
     dice_roll();
+    config_set(Some(3u8));
+    config_set(None);
 }
