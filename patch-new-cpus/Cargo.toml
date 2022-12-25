@@ -1,0 +1,9 @@
+[package]
+name = "patch-new-cpus"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+num_cpus = { git = "https://github.com/salimp2009/num_cpus.git", rev = "efad8eecf27964ef6dccb11fc8809905e4a45fff" }
