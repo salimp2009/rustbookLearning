@@ -1,5 +1,8 @@
-use crate::front_of_house::hosting::seat_at_table;
-use front_of_house::hosting::add_to_waitlist;
+// idomatic Rust wat of specifiying the parent module
+use crate::front_of_house::hosting;
+
+// idiomatic way of Rsut specifiying full path enums, structs
+use std::collections::HashMap;
 
 pub fn add(left: usize, right: usize) -> usize {
     left + right
@@ -26,13 +29,16 @@ mod front_of_house {
     }
 }
 
-pub fn eat_at_restaurant() {
-    add_to_waitlist();
-    seat_at_table();
+#[allow(dead_code)]
+mod customer {
+    pub fn eat_at_restaurant() {
+        super::hosting::add_to_waitlist();
+        super::hosting::seat_at_table();
 
-    let mut meal = back_of_house::Breakfast::summer("rye");
-    meal.toast = String::from("whole wheat");
-    println!("would like to have a {} toast please", meal.toast);
+        let mut meal = super::back_of_house::Breakfast::summer("rye");
+        meal.toast = String::from("whole wheat");
+        println!("would like to have a {} toast please", meal.toast);
+    }
 }
 
 pub fn eat_at_restaurant2() {
@@ -68,6 +74,38 @@ mod back_of_house {
                 toast: String::from(toast),
                 seasonal_fruit: String::from("strawberry"),
             }
+        }
+    }
+}
+
+pub fn sample_hashmap() {
+    let mut map = HashMap::new();
+    map.insert(1, 2);
+    println!("{}", map[&1]);
+}
+
+pub fn book_reviews_hashmap() {
+    let mut book_reviews = HashMap::new();
+    book_reviews.insert("Adventures of Demir".to_string(), "MasterPiece".to_string());
+    book_reviews.insert(
+        "Grimms' Fairy Tales".to_string(),
+        "Masterpiece.".to_string(),
+    );
+    book_reviews.insert(
+        "Pride and Prejudice".to_string(),
+        "Very enjoyable.".to_string(),
+    );
+    book_reviews.insert(
+        "The Adventures of Sherlock Holmes".to_string(),
+        "Eye lyked it alot.".to_string(),
+    );
+
+    let books_to_find = ["Adventures of Demir", "Grimms' Fairy Tales"];
+
+    for &book in &books_to_find {
+        match book_reviews.get(book) {
+            Some(review) => println!("{book}: {review}"),
+            None => println!("{book} is unreviewed!"),
         }
     }
 }
