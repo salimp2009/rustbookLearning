@@ -1,8 +1,19 @@
 // idomatic Rust wat of specifiying the parent module
-use crate::front_of_house::hosting;
+// using pub reexport front_of_house module and make all pub
+// functions available; see chapter 14 for a more clear explanation
+pub use crate::front_of_house::hosting;
 
 // idiomatic way of Rsut specifiying full path enums, structs
 use std::collections::HashMap;
+
+// example of glob operator that brings all public items
+// this is mostly used for testing otherwise it will bring unneccessary items
+#[allow(unused_imports)]
+use std::collections::*;
+
+// example of using both io and io::Write in module import
+#[allow(unused_imports)]
+use std::io::{self, Write};
 
 pub fn add(left: usize, right: usize) -> usize {
     left + right
@@ -44,6 +55,7 @@ mod customer {
 pub fn eat_at_restaurant2() {
     let _order1 = back_of_house::Appetizer::Soup;
     let _order2 = back_of_house::Appetizer::Salad;
+    hosting::add_to_waitlist();
 }
 
 fn deliver_order() {}
