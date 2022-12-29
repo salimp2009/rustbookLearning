@@ -12,6 +12,7 @@ use std::collections::HashMap;
 use std::collections::*;
 
 // example of using both io and io::Write in module import
+// self refers std::io
 #[allow(unused_imports)]
 use std::io::{self, Write};
 
