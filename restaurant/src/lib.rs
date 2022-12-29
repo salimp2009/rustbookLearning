@@ -1,6 +1,6 @@
 // idomatic Rust wat of specifiying the parent module
 // using pub reexport front_of_house module and make all pub
-// functions available; see chapter 14 for a more clear explanation
+// functions available: see chapter 14 for a more clear explanation
 pub use crate::front_of_house::hosting;
 
 // idiomatic way of Rsut specifiying full path enums, structs
