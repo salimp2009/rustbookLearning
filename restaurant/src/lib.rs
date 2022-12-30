@@ -5,6 +5,7 @@ pub use crate::front_of_house::hosting;
 
 // idiomatic way of Rsut specifiying full path enums, structs
 use std::collections::HashMap;
+mod front_of_house;
 
 // example of glob operator that brings all public items
 // this is mostly used for testing otherwise it will bring unneccessary items
@@ -18,27 +19,6 @@ use std::io::{self, Write};
 
 pub fn add(left: usize, right: usize) -> usize {
     left + right
-}
-
-#[allow(dead_code)]
-mod front_of_house {
-    pub mod hosting {
-        pub fn add_to_waitlist() {}
-
-        pub fn seat_at_table() {}
-    }
-
-    mod serving {
-        fn take_order() {
-            super::hosting::seat_at_table();
-        }
-
-        fn serve_order() {
-            take_order();
-        }
-
-        fn take_payment() {}
-    }
 }
 
 #[allow(dead_code)]
