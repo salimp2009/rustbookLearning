@@ -10,6 +10,7 @@ fn main() {
     println!("v : {:?}", v);
 
     let third: &i32 = &v[2];
+
     println!("third: {third}");
 
     let third: Option<&i32> = v.get(2);
@@ -21,4 +22,27 @@ fn main() {
             println!("out of bounds!");
         }
     }
+
+    let mut v = vec![1, 2, 3, 4, 5];
+    let first = &v[0];
+    println!("first: {first}");
+    v.push(6);
+
+    //    this wont compile since we are using mut reference access in between
+    //    println!("first : {first}");
+    println!("first : {}", v[0]);
+
+    for i in &v {
+        println!("{i}")
+    }
+    for i in &mut v {
+        *i += 10;
+    }
+
+    println!("{:?}", v);
+    v.iter_mut().for_each(|i| {
+        *i += 10;
+    });
+
+    println!("{:?}", v);
 }
