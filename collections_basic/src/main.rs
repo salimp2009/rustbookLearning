@@ -5,6 +5,9 @@ enum SpreadsheetCells {
     Text(String),
 }
 
+#[allow(dead_code)]
+const GLOBAL_STRING: &str = "hello globe";
+
 fn main() {
     let mut v: Vec<i32> = Vec::new();
     v.push(5);
