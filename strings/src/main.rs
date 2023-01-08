@@ -27,4 +27,22 @@ fn main() {
 
     let hello = String::from("hello");
     assert_eq!(hello.len(), 5);
+
+    let mut s = String::from("foo");
+    s.push_str("bar");
+    assert_eq!(s, "foobar");
+
+    let s1 = "this is old";
+    assert_eq!("this is new", s1.replace("old", "new"));
+
+    let s2 = "zoo is awesome";
+    s.push_str(s2);
+    println!("s2 is still valid: {s2}");
+    println!("s is changed: {s}");
+
+    let s = String::from("hello");
+    let s1 = String::from(" lightning");
+    let s = s + &s1;
+    println!("s: {s}");
+    println!("s1: {s1}");
 }
