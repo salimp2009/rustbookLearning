@@ -1,5 +1,12 @@
 use std::mem;
 
+#[allow(dead_code)]
+fn indexing_strings() {
+    let _s = String::from("hello astro");
+    //    direct access via index is not allowed Index<Integer> not implemented for String
+    //    let h = s[0];
+}
+
 fn main() {
     let data = "initial contents";
 
@@ -45,4 +52,11 @@ fn main() {
     let s = s + &s1;
     println!("s: {s}");
     println!("s1: {s1}");
+
+    let s = String::from("tic");
+    let s1 = String::from("tac");
+    let s3 = String::from("toe");
+    let s2 = format!("{s}-{s1}-{s3}");
+    println!("{s2}");
+    assert_eq!("tic", s)
 }
