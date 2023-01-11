@@ -7,6 +7,19 @@ fn indexing_strings() {
     //    let h = s[0];
 }
 
+#[allow(dead_code)]
+fn strings_internal_rep() {
+    let hello = String::from("Hola");
+    assert_eq!(hello.len(), 4);
+
+    let hello = String::from("Здравствуйте");
+    let size = hello.as_bytes().iter().map(mem::size_of_val).sum::<usize>();
+    println!("size of String: {hello} is {size}");
+    assert_eq!(hello.len(), size);
+    let size = mem::size_of_val(&hello);
+    println!("size_of_val result of {hello} is {size}");
+}
+
 fn main() {
     let data = "initial contents";
 
@@ -58,5 +71,7 @@ fn main() {
     let s3 = String::from("toe");
     let s2 = format!("{s}-{s1}-{s3}");
     println!("{s2}");
-    assert_eq!("tic", s)
+    assert_eq!("tic", s);
+
+    strings_internal_rep();
 }
