@@ -74,4 +74,11 @@ fn main() {
     assert_eq!("tic", s);
 
     strings_internal_rep();
+
+    let hello = "Здравствуйте";
+    let slice1 = &hello[0..6];
+    println!("slice of hello: {slice1}");
+
+    "Зд".chars().for_each(|c| println!("{c}"));
+    "Зд".bytes().for_each(|c| println!("{c}"));
 }
